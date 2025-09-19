@@ -3,21 +3,35 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [job, setJob] = useState("");
+
+    function handleChange(e) {
+    setJob(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setJob(job);
+  }
 
   return (
     <>
-    <h1>To do list</h1>
-    <br/>
-    <input type="text" name="text" id="text" placeholder='What needs to be done?'/>
-    <button type="button">Add</button>
-    <br/>     
-    <p className='card'>No tasks yet - add one above.</p>
+      <form onSubmit={handleSubmit}>
+            <label>To Do List:
+              <br />
+              <input
+                type="text" 
+                value={job}
+                onChange={handleChange}
+                placeholder='what needs to be done?'
+              />
+            </label>
+            <br />  
+            <input type="submit" />
+          </form> 
 
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+          <p id='display'>{job}</p>
+
     </>
   )
 }
